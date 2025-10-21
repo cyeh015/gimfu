@@ -1,5 +1,5 @@
 [build-system]
-requires = ["hatchling"]
+requires = ["hatchling", "hatch-vcs"]
 build-backend = "hatchling.build"
 
 [project]
@@ -32,7 +32,7 @@ Issues = "https://github.com/cyeh015/gimfu/issues"
 Source = "https://github.com/cyeh015/gimfu"
 
 [tool.hatch.version]
-path = "src/gimfu/__about__.py"
+source = "vcs"
 
 [tool.hatch.envs.types]
 extra-dependencies = [
