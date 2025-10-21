@@ -2,12 +2,13 @@ import re
 import os
 import json
 
+from gimfu.t2listingh5 import t2listingh5
+from gimfu.geo_common import quick_enthalpy
+
 from t2data import t2generator
 from t2data import t2data_parser, t2data
-from t2listingh5 import t2listingh5
 from t2incons import t2incon
 from t2thermo import *
-from geo_common import quick_enthalpy
 import numpy as np
 
 KGSPERTD = 1000./24./60./60. # kg/s per ton/day

@@ -6,7 +6,7 @@ Tables in LaTeX format is genreated for use in the figure report.
 import json
 from copy import deepcopy
 
-from figure_report import escape_latex_special_chars
+from gimfu.figure_report import escape_latex_special_chars
 
 class CleanTable(object):
     """ Generating clean table where repeated cell is empty if content is the

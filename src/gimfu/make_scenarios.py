@@ -1,6 +1,7 @@
 import logging
 
-from config import *
+from gimfu.config import *
+
 from t2data import *
 from t2incons import *
 
