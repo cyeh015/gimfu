@@ -1,7 +1,7 @@
 import os
 import shutil
 import subprocess
-import gpl
+import gimfu.gpl
 from copy import deepcopy
 
 import pint
