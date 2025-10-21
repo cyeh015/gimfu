@@ -24,7 +24,16 @@ classifiers = [
   "Programming Language :: Python :: Implementation :: CPython",
   "Programming Language :: Python :: Implementation :: PyPy",
 ]
-dependencies = []
+dependencies = [
+  "numpy",
+  "scipy",
+  "matplotlib",
+  "PyTOUGH",
+  "h5py",
+  "Pint",
+  "xlrd",
+  "xlwt",
+]
 
 [project.urls]
 Documentation = "https://github.com/cyeh015/gimfu/blob/main/README.md"
