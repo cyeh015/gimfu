@@ -859,7 +859,7 @@ def make_ver2(cfg):
     with open(dirname + 'scenario_spec.json', 'w') as fspec:
         json.dump(scenario_spec, fspec, indent=4, sort_keys=True)
 
-if __name__ == '__main__':
+def main():
     # read CFG file, if not specified, default name is assumed
     cwd = getcwd() + sep
     cfg = config()
@@ -877,4 +877,7 @@ if __name__ == '__main__':
         make_ver2(cfg)
     else:
         logging.error("Please make sure you are configuring the scenario either using version 1 or 2, but not both!")
+    return 0
 
+if __name__ == '__main__':
+    main()

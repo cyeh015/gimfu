@@ -40,6 +40,9 @@ Documentation = "https://github.com/cyeh015/gimfu/blob/main/README.md"
 Issues = "https://github.com/cyeh015/gimfu/issues"
 Source = "https://github.com/cyeh015/gimfu"
 
+[project.scripts]
+make_scenarios = "gimfu.make_scenarios:main"
+
 [tool.hatch.version]
 source = "vcs"
 
