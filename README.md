@@ -22,6 +22,8 @@ pip install -U gimfu
 
 ## Commands
 
+### Make Scenario
+
 To build a scenario from a `.cfg` and its parts (.geners):
 
 ```console
@@ -30,6 +32,13 @@ make_scenarios make_scenarios_sXXX.cfg
 
 This will generate a folder with the scenario name.  Use `run_all_models.bat` for Windows or `./run_all_models.sh`  for Linux/MacOS.
 
+### Convert SAVE file to INCON file
+
+```console
+save2incon a.save b.incon
+```
+
+NOTE this command is used during the scenario run.
 
 ## License
 
