@@ -8,67 +8,6 @@ import pint
 Unit = pint.UnitRegistry()
 Unit.Q = Unit.Quantity
 
-titlepage = (
-    "\\begin{titlepage}\n"
-    "    \\begin{center}\n"
-    "\n"
-    "    \\begin{minipage}[c]{1.0\\textwidth}\n"
-    "        \\raisebox{-0.5\\height}{\\includegraphics[width=0.50\\textwidth]{../UniServices.eps}}\n"
-    "        \\hfill\n"
-    "        \\raisebox{-0.5\\height}{\\includegraphics[width=0.30\\textwidth]{../The_University_of_Auckland.eps}}\n"
-    "    \\end{minipage}\n"
-    "\n"
-    "    \\vspace*{-1cm}\n"
-    "\n"
-    "    \\Huge\n"
-    "    \\textsc{\n"
-    "        Wair\={a}kei-Tauhara Modelling Report\n"
-    "    }\n"
-    "\n"
-    "    \\LARGE\n"
-    "    \\textsc{%s}\n"
-    "\n"
-    "    \\vspace*{1.5cm}\n"
-    "\n"
-    "    \\huge\n"
-    "    \\textsc{\n"
-    "    by \\\\\n"
-    "    \\vspace*{0.1cm}\n"
-    "    Angus Yeh,\\\\\n"
-    "    \\vspace*{0.1cm}\n"
-    "    Prof. Michael O'Sullivan,\\\\\n"
-    "    \\vspace*{0.1cm}\n"
-    "    Dr John O'Sullivan,\\\\\n"
-    "    \\vspace*{0.1cm}\n"
-    "    Ethan Chabora, Paul Abrasaldo\\\\\n"
-    "    \\vspace*{0.1cm}\n"
-    "    and Warren Mannington\\\\\n"
-    "    \\vspace*{0.1cm}\n"
-    "    (Contact Energy Ltd.)\n"
-    "    }\n"
-    "\n"
-    "    \\vspace*{1.0cm}\n"
-    # "    \\vfill\n"
-    "\n"
-    "    \\huge\n"
-    "    \\textsc{\n"
-    "    Uniservices and \\\\\n"
-    "    \\vspace*{0.1cm}\n"
-    "    Department of Engineering Science \\\\\n"
-    "    \\vspace*{0.1cm}\n"
-    "    University of Auckland\n"
-    "    }\n"
-    "\n"
-    "    \\vspace*{0.5cm}\n"
-    "\n"
-    "\n"
-    "    \\huge\n"
-    "    \\textsc{Report %s \\\\ \\vspace*{0.1cm}  %s}\n"
-    "    \\vspace*{1cm}\n"
-    "    \\end{center}\n"
-    "\\end{titlepage}\n"
-    )
-
 tpl_1 = '\n'.join([
     '\n',
     '\\begin{sidewaysfigure}',
@@ -354,8 +293,8 @@ class FigureReport(object):
         self.gpl_mods.append((fname+'.gpl',p))
         return fname
 
-    def add_titlepage(self, title, report_number, date):
-        self.latex_lines.append(titlepage % (title, report_number, date))
+    def add_titlepage(self, title, report_number, date, template):
+        self.latex_lines.append(template % (title, report_number, date))
         self.latex_lines.append('\n\n')
 
     def add_chapter(self, name, set_counter=None):
