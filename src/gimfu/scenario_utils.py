@@ -608,7 +608,7 @@ class DeliverabilityCurves(object):
             self.load_from_cfg(filename)
 
     def load_from_cfg(self, filename):
-        import config
+        from gimfu import config
         if isinstance(filename, config.config):
             cfg = filename
         else:
