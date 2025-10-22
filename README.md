@@ -30,7 +30,6 @@ make_scenarios make_scenarios_sXXX.cfg
 
 This will generate a folder with the scenario name.  Use `run_all_models.bat` for Windows or `./run_all_models.sh`  for Linux/MacOS.
 
-```
 
 ## License
 
