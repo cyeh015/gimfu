@@ -37,6 +37,8 @@ This will generate a folder with the scenario name.  Use `run_all_models.bat` fo
 
 ## Developer
 
+To bump version, create a tag, eg. `v0.1.0`
+
 PyPI token is expected in ~/.pypirc
 
 Publish to PyPI:
