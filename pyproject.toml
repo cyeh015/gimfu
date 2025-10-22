@@ -33,6 +33,8 @@ dependencies = [
   "Pint",
   "xlrd",
   "xlwt",
+  "tabulate",
+  "xlsxwriter",
 ]
 
 [project.urls]
