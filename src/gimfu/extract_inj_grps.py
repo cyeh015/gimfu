@@ -144,6 +144,7 @@ def default_grouping(bgs, custom_grouping=None):
 
 def plot_mass_enth_groups(pdf_pages, times,
                           grouped_mass, grouped_enth, grouped_tags,
+                          title_prefix='',
                           to_mass_unit=assign_kgs,
                           to_enth_unit=assign_jkg,
                           to_time_unit=assign_sec):
@@ -171,7 +172,7 @@ def plot_mass_enth_groups(pdf_pages, times,
         fig.set_figwidth(8.5)
         fig.set_figheight(13)
 
-        ax1.set_title('%s Group %s' % (sname, grp))
+        ax1.set_title('%s Group %s' % (title_prefix, grp))
         # ax1.axis([0, 10, 0, 10])
         # ax1.text(5, 5, '\n'.join(grouped_tags[grp]), ha='center', va='center', wrap=True)
         # ax1.tick_params(left=False, right=False, bottom=False,
@@ -354,6 +355,7 @@ def main():
         grp_total_mass, grp_total_enth = plot_mass_enth_groups(
             pdf_pages, times,
             grouped_mass, grouped_enth, grouped_tags,
+            title_prefix=sname,
             to_mass_unit=to_thr,
             to_enth_unit=to_kjkg,
             to_time_unit=partial(to_year, start_year=offset_year),
@@ -373,6 +375,7 @@ def main():
         grp_total_mass, grp_total_enth = plot_mass_enth_groups(
             pdf_pages, times,
             grouped_mass, grouped_enth, grouped_tags,
+            title_prefix=sname,
             to_mass_unit=to_ktd,
             to_enth_unit=to_kjkg,
             to_time_unit=partial(to_year, start_year=offset_year),
@@ -392,6 +395,7 @@ def main():
         # grp_total_mass, grp_total_enth = plot_mass_enth_groups(
         #     pdf_pages, times,
         #     grouped_mass, grouped_enth, grouped_tags,
+        #     title_prefix=sname,
         #     to_mass_unit=to_ktd_rev,
         #     to_enth_unit=to_kjkg,
         #     to_time_unit=partial(to_year, start_year=offset_year),
