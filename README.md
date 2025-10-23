@@ -18,6 +18,12 @@ A toolkit for generating future scenarios in AUTOUGH2.
 pip install -U gimfu
 ```
 
+If you use conda, use the supplied `environment.yml` to create `py311-gimfu`.  This installs packages using conda as much as possible before installing packages from PyPI.
+
+```console
+conda env create -f environment.yml
+```
+
 ## Commands
 
 ### Make Scenario
@@ -51,6 +57,8 @@ These packages may be required to generate a full scenario report:
 
 ## Developer
 
+### Build and Publish
+
 To bump version, create a tag, eg. `v0.1.0`
 
 PyPI token is expected in ~/.pypirc
@@ -61,3 +69,7 @@ Publish to PyPI:
 hatch build
 hatch publish
 ```
+
+### TODO
+
+- `xlwt` only available in Python <= 3.11 if using conda, replace it with `xlsxwriter`

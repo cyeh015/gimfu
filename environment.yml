@@ -1,0 +1,14 @@
+name: py311-gimfu
+dependencies:
+  - python=3.11
+  - numpy
+  - scipy
+  - matplotlib
+  - h5py
+  - xlwt
+  - tabulate
+  - xlsxwriter
+  - pip:
+    - PyTOUGH
+    - Pint
+    - gimfu
