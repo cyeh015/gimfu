@@ -45,6 +45,7 @@ make_scenarios = "gimfu.make_scenarios:main"
 save2incon = "gimfu.save2incon:main"
 
 extract_prd_grps = "gimfu.extract_prd_grps:main"
+extract_inj_grps = "gimfu.extract_inj_grps:main"
 
 [tool.hatch.version]
 source = "vcs"
