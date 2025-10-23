@@ -47,6 +47,7 @@ save2incon = "gimfu.save2incon:main"
 extract_prd_grps = "gimfu.extract_prd_grps:main"
 extract_inj_grps = "gimfu.extract_inj_grps:main"
 
+extract_prd_geners = "gimfu.extract_prd_geners:main"
 extract_inj_geners = "gimfu.extract_inj_geners:main"
 
 [tool.hatch.version]
