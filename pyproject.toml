@@ -31,7 +31,6 @@ dependencies = [
   "PyTOUGH",
   "h5py",
   "Pint",
-  "xlrd",
   "xlwt",
   "tabulate",
   "xlsxwriter",
