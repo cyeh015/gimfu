@@ -2,15 +2,13 @@
 
 A toolkit for generating future scenarios in AUTOUGH2.
 
-[![PyPI - Version](https://img.shields.io/pypi/v/gimfu.svg)](https://pypi.org/project/gimfu)
-[![PyPI - Python Version](https://img.shields.io/pypi/pyversions/gimfu.svg)](https://pypi.org/project/gimfu)
-
 -----
 
 ## Table of Contents
 
 - [Installation](#installation)
 - [Commands](#Commands)
+- [Related Packages](#related-packages)
 - [License](#license)
 - [Developer](#Developer)
 
@@ -39,6 +37,13 @@ save2incon a.save b.incon
 ```
 
 NOTE this command is used during the scenario run.
+
+## Related Packages
+
+These packages may be required to generate a full scenario report:
+- LaTeX (`latex`, `dvips`)
+- gnuplot (`gnuplot`)
+- Ghostscript (`gs`)
 
 ## License
 
