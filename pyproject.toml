@@ -5,7 +5,7 @@ build-backend = "hatchling.build"
 [project]
 name = "gimfu"
 dynamic = ["version"]
-description = 'A toolkit for generating future scenarios in AUTOUGH2.'
+description = 'A toolkit and python library for generating future scenarios in AUTOUGH2.'
 readme = "README.md"
 requires-python = ">=3.8"
 license = "MIT"
@@ -41,6 +41,8 @@ Issues = "https://github.com/cyeh015/gimfu/issues"
 Source = "https://github.com/cyeh015/gimfu"
 
 [project.scripts]
+gimfu = "gimfu.project_cli:show_help"
+
 make_scenarios = "gimfu.make_scenarios:main"
 save2incon = "gimfu.save2incon:main"
 
