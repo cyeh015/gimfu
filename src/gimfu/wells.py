@@ -119,4 +119,17 @@ class WellPlan:
         feed_block = geo.block_name_containing_point(feed_pos, qtree=geo_qtree)
         return feed_block
 
+    def add_to_mulgrid(self, geo, name=None):
+        """ add a well object into mulgrid """
+        data_columns = ['Easting', 'Northing', 'Elevation']
+        pos = list(zip(*[self.data[c] for c in data_columns]))
+        if name is None:
+            # default anme uses Well ID, trim to last 5 characters
+            well_name = self.header.get('Well ID', 'WELL1')[-5:]
+        else:
+            well_name = name
+        w = well(well_name, pos)
+        geo.add_well(w)
+
+
 
