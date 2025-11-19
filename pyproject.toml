@@ -52,6 +52,9 @@ extract_inj_grps = "gimfu.extract_inj_grps:main"
 extract_prd_geners = "gimfu.extract_prd_geners:main"
 extract_inj_geners = "gimfu.extract_inj_geners:main"
 
+extract_gener_meta = "gimfu.scenario_tree:extract_meta"
+extract_raw_spec = "gimfu.scenario_tree:extract_raw_spec"
+
 [tool.hatch.version]
 source = "vcs"
 

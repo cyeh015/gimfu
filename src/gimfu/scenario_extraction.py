@@ -1,6 +1,31 @@
 """ shared functions that deals with extracting scenario results
 """
 
+import json
+from pathlib import Path
+
+class ScenarioDir():
+    def __init__(self, path):
+        self.specification = None
+        self.h5_filenames = []
+        self.lst_filenames = []
+        self.dat_filenames = []
+
+        spec_file = Path(path) / Path('scenario_spec.json')
+        if spec_file.exists():
+            with open(spec_file, 'r') as f:
+                self.specification = json.load(f)
+            sims = self.specification['simulations']
+            sim_filenames = [str(Path(path) / Path(sim['filename'])) for sim in sims]
+            self.lst_filenames = [fn + '.listing' for fn in sim_filenames]
+            self.h5_filenames = [fn + '.h5' for fn in sim_filenames]
+            self.dat_filenames = [fn + '.dat' for fn in sim_filenames]
+        else:
+            self.lst_fnames = sorted(glob.glob('%s/*.listing' % path))
+            self.h5_filenames = [fn.replace('.listing', '.h5') for fn in self.lst_fnames]
+            self.dat_filenames = [fn.replace('.listing', '.dat') for fn in self.lst_fnames]
+
+
 def external_name(cfg, sname):
     if isinstance(cfg, str):
         with open(cfg, 'r') as f:
