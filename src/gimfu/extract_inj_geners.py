@@ -65,9 +65,9 @@ def plot_inj_geners(sdir, scenario_name, block_name, gener_name):
 
     bname, gname = block_name, gener_name
     rebn, regn = re.compile(bname), re.compile(gname)
-    columns =  ['Generation rate']
-    units =    ['t/day']
-    converts = [to_tday]
+    columns =  ['Generation rate', 'Enthalpy']
+    units =    ['t/day', 'kJ/kg']
+    converts = [to_tday, to_kjkg]
     tbl,bgcs = get_gener_history(bname, gname, lsts, cols=columns)
 
     # collect gener info from t2data, and fake it into time series as from lst
@@ -96,7 +96,7 @@ def plot_inj_geners(sdir, scenario_name, block_name, gener_name):
     ws = wb.add_sheet('injection well blocks')
     for ii,(b,g,c) in enumerate(bgcs):
         # TIMES
-        ofsx = ii * 2 # X
+        ofsx = ii * (1 + len(columns)) # X
         ofsy = 0      # Y
         ws.write(ofsx, ofsy, b)
         ws.write(ofsx, ofsy+1, g)
