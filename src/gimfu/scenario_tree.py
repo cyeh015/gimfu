@@ -17,6 +17,7 @@ import json
 import glob
 import shutil
 import os
+import re
 from pprint import pprint
 
 
@@ -87,6 +88,70 @@ class StationGenerGroup():
                f"inj_geners={len(self.inj_geners)}, " \
                f"chk_geners={len(self.chk_geners)})"
 
+class CustomFilter():
+    """ A regular expression based filtering system to classify objects
+
+    example filters:
+        "custom_filter": {
+            "existing_or_makeup": {
+                "existing": {
+                    "block": ".....",
+                    "gener": "(E..|HP[ABE]|HI[19E]).."
+                },
+                "makeup": {
+                    "block": ".....",
+                    "gener": "(M..|HI[2345]|I.[346]).."
+                }
+            },
+            "zone": {
+                "TH North":           {"gener": "HI[13].."},
+                "WAI Karapiti":       {"gener": "I.4.."},
+                "WAI Poihipi West":   {"gener": "I.6.."}
+            }
+        },
+
+    example result from:
+        .check_object({'gener': 'HI123'})
+
+    will return:
+        {
+            "existing_or_makeup": "existing",
+            "zone": "TH North"
+        }
+    """
+    def __init__(self, custom_gener_filter):
+        self._raw_filters = custom_gener_filter
+        self.fields = {}
+        for field, rules in custom_gener_filter.items():
+            self.fields[field] = {}
+            for value, rule in rules.items():
+                self.fields[field][value] = {}
+                for var, rex_str in rule.items():
+                    self.fields[field][value][var] = re.compile(rex_str)
+
+    def check_object(self, data):
+        """ returns a dict with {field: value}, determined by going through all
+        fields. For each field, value is determined by matching *all* rules of
+        keys in both data and filter rule.
+
+        The value of a field will be left empty if no matching values found.
+
+        There will only be one value (the last matching) even if multiple values
+        are matched,
+        """
+        result = {}
+        for field, rules in self.fields.items():
+            result[field] = "" # nothing as default, if none matches
+            for value, rule in rules.items():
+                matches = []
+                for d_var, d_value in data.items():
+                    if d_var in rule:
+                        matches.append(rule[d_var].match(d_value))
+                if all(matches):
+                    result[field] = value
+        return result
+
+
 def get_gener_wellname_stackname(g, well_stack_specs, alias={}, grouping={}):
     """ return (well_name, stack_name)
 
@@ -108,7 +173,8 @@ def get_gener_wellname_stackname(g, well_stack_specs, alias={}, grouping={}):
     # if all failed: '', ''
     return well_name, group_name
 
-def scenario_tree(sdir, scenario_name, gener_alias={}, custom_grouping={}, geo=None):
+def scenario_tree(sdir, scenario_name, gener_alias={}, custom_grouping={},
+                  custom_filter=None, geo=None):
     scenario = ScenarioDir(sdir)
     dat_fnames = scenario.dat_filenames
     offset_yr = scenario.specification["date_offset"]
@@ -157,6 +223,11 @@ def scenario_tree(sdir, scenario_name, gener_alias={}, custom_grouping={}, geo=N
                         'well': well_name,
                         'stack': stack_name,
                     }
+                    if custom_filter is not None:
+                        g_data.update(custom_filter.check_object({
+                            'block': g[0],
+                            'gener': g[1],
+                        }))
                     if geo is not None:
                         g_data.update({
                             'elevation': geo.block_centre(
@@ -196,6 +267,7 @@ def extract_meta():
 
     gener_alias = cfg.get('gener_alias', {})
     custom_grouping = cfg.get('custom_grouping', {})
+    custom_filter = CustomFilter(cfg.get('custom_filter', {}))
     geo = mulgrid(cfg['geometry'])
 
     for sdir in cfg['dir_to_extract']:
@@ -204,7 +276,7 @@ def extract_meta():
         sname = external_name(cfg, sname)
         print("\nExtracting scenario '%s' from directory: %s" % (sname, sdir))
 
-        scenario_tree(sdir, sname, gener_alias, custom_grouping, geo)
+        scenario_tree(sdir, sname, gener_alias, custom_grouping, custom_filter, geo)
 
 def extract_raw_spec():
     """ copy the spec json from sdir """
