@@ -232,6 +232,7 @@ def scenario_tree(sdir, scenario_name, gener_alias={}, custom_grouping={},
                         g_data.update({
                             'elevation': geo.block_centre(
                                 geo.layer_name(g[0]), geo.column_name(g[0]))[2],
+                            'layer': geo.layer_name(g[0])
                         })
                     # --------------
                     gs.append(g_data)
