@@ -42,6 +42,7 @@ Source = "https://github.com/cyeh015/gimfu"
 
 [project.scripts]
 gimfu = "gimfu.project_cli:show_help"
+make_waiwera_copy = "gimfu.waiwera_copy:main"
 
 make_scenarios = "gimfu.make_scenarios:main"
 save2incon = "gimfu.save2incon:main"
